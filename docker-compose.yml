@@ -1,0 +1,7 @@
+# Phase 0 placeholder.
+#
+# Services will be added when agent-api, frontend, and integration dependencies
+# exist. Until then, `docker compose config` is intentionally listed as a
+# future quality gate rather than a passed check.
+name: finance-ticket-agent
+services: {}

@@ -1,0 +1,164 @@
+[
+  {
+    "id": "case_reimbursement_policy_completed",
+    "title": "出差餐补报销规则",
+    "description": "我下周去上海出差，想问餐补需要哪些材料？",
+    "metadata": {},
+    "expected_type": "reimbursement_policy",
+    "expected_status": "completed",
+    "expected_min_tool_calls": 0,
+    "expected_needs_human": false,
+    "expected_trace_events": ["classification", "rag_retrieval", "structured_output"]
+  },
+  {
+    "id": "case_reimbursement_approval_completed",
+    "title": "住宿超标准审批",
+    "description": "住宿费用超过审批标准时还能报销吗？",
+    "metadata": {},
+    "expected_type": "reimbursement_policy",
+    "expected_status": "completed",
+    "expected_min_tool_calls": 0,
+    "expected_needs_human": false,
+    "expected_trace_events": ["classification", "rag_retrieval", "structured_output"]
+  },
+  {
+    "id": "case_reimbursement_no_evidence_escalated",
+    "title": "报销规则",
+    "description": "火星基地设备补贴能不能报销？",
+    "metadata": {},
+    "rag_mode": "force_no_evidence",
+    "expected_type": "reimbursement_policy",
+    "expected_status": "escalated",
+    "expected_min_tool_calls": 0,
+    "expected_needs_human": true,
+    "expected_trace_events": ["classification", "rag_retrieval", "human_escalation"]
+  },
+  {
+    "id": "case_balance_completed",
+    "title": "余额异常解释",
+    "description": "账户余额比我预期少 500，帮我解释一下。",
+    "metadata": {
+      "account_id": "demo-account",
+      "observed_balance": 1500
+    },
+    "expected_type": "balance_anomaly",
+    "expected_status": "completed",
+    "expected_min_tool_calls": 3,
+    "expected_needs_human": false,
+    "expected_trace_events": ["classification", "rag_retrieval", "tool_call", "structured_output"]
+  },
+  {
+    "id": "case_balance_needs_more_info",
+    "title": "余额异常解释",
+    "description": "账户余额和我看到的不一致。",
+    "metadata": {},
+    "expected_type": "balance_anomaly",
+    "expected_status": "needs_more_info",
+    "expected_min_tool_calls": 0,
+    "expected_needs_human": false,
+    "expected_trace_events": ["classification", "missing_parameters"]
+  },
+  {
+    "id": "case_balance_continue_completed",
+    "title": "余额异常解释",
+    "description": "账户余额和我看到的不一致。",
+    "metadata": {},
+    "continue_request": {
+      "message": "账户是 demo-account，我看到的余额是 1500。",
+      "metadata_patch": {
+        "account_id": "demo-account",
+        "observed_balance": 1500
+      }
+    },
+    "expected_type": "balance_anomaly",
+    "expected_status": "completed",
+    "expected_min_tool_calls": 3,
+    "expected_needs_human": false,
+    "expected_trace_events": ["missing_parameters", "continue_ticket", "metadata_patch_applied", "dialogue_context_updated", "tool_call"]
+  },
+  {
+    "id": "case_balance_tool_failure_escalated",
+    "title": "余额异常解释",
+    "description": "账户余额比我预期少 500，帮我解释一下。",
+    "metadata": {
+      "account_id": "tool-failure-account",
+      "observed_balance": 1500
+    },
+    "expected_type": "balance_anomaly",
+    "expected_status": "escalated",
+    "expected_min_tool_calls": 2,
+    "expected_needs_human": true,
+    "expected_trace_events": ["classification", "tool_call", "human_escalation"]
+  },
+  {
+    "id": "case_reconciliation_completed",
+    "title": "本月对账核验",
+    "description": "这个账户本月对账是否一致？",
+    "metadata": {
+      "account_id": "demo-account",
+      "expected_balance": 1000,
+      "time_range": "2026-08"
+    },
+    "expected_type": "reconciliation_anomaly",
+    "expected_status": "completed",
+    "expected_min_tool_calls": 2,
+    "expected_needs_human": false,
+    "expected_trace_events": ["classification", "rag_retrieval", "tool_call", "structured_output"]
+  },
+  {
+    "id": "case_reconciliation_expected_balance_mismatch",
+    "title": "本月对账差异",
+    "description": "这个账户本月对账差了 1000，帮我定位原因。",
+    "metadata": {
+      "account_id": "demo-account",
+      "expected_balance": 3000,
+      "time_range": "2026-08"
+    },
+    "expected_type": "reconciliation_anomaly",
+    "expected_status": "escalated",
+    "expected_min_tool_calls": 2,
+    "expected_needs_human": true,
+    "expected_trace_events": ["classification", "rag_retrieval", "tool_call", "human_escalation"]
+  },
+  {
+    "id": "case_reconciliation_internal_mismatch",
+    "title": "本月对账差异",
+    "description": "这个账户本月内部对账不一致。",
+    "metadata": {
+      "account_id": "ledger-mismatch-account",
+      "expected_balance": 1000,
+      "time_range": "2026-08"
+    },
+    "expected_type": "reconciliation_anomaly",
+    "expected_status": "escalated",
+    "expected_min_tool_calls": 2,
+    "expected_needs_human": true,
+    "expected_trace_events": ["classification", "rag_retrieval", "tool_call", "human_escalation"]
+  },
+  {
+    "id": "case_reconciliation_invalid_expected_balance",
+    "title": "本月对账差异",
+    "description": "这个账户本月对账差了 1000。",
+    "metadata": {
+      "account_id": "demo-account",
+      "expected_balance": "not-a-number",
+      "time_range": "2026-08"
+    },
+    "expected_type": "reconciliation_anomaly",
+    "expected_status": "escalated",
+    "expected_min_tool_calls": 2,
+    "expected_needs_human": true,
+    "expected_trace_events": ["classification", "rag_retrieval", "tool_call", "human_escalation"]
+  },
+  {
+    "id": "case_unsupported_escalated",
+    "title": "预算预测",
+    "description": "帮我预测下季度利润。",
+    "metadata": {},
+    "expected_type": "unsupported",
+    "expected_status": "escalated",
+    "expected_min_tool_calls": 0,
+    "expected_needs_human": true,
+    "expected_trace_events": ["classification", "human_escalation"]
+  }
+]
