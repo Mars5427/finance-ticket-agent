@@ -1,0 +1,66 @@
+{
+  "mode": "uvicorn subprocess",
+  "port": 8010,
+  "go_api_base_url": "http://127.0.0.1:8080",
+  "health": {
+    "status": "ok"
+  },
+  "tools": [
+    "get_account",
+    "list_account_transactions",
+    "get_transaction_detail",
+    "check_account_reconciliation"
+  ],
+  "balance_ticket": {
+    "id": "ticket_3e8edb880219",
+    "status": "completed",
+    "type": "balance_anomaly",
+    "tool_calls": [
+      {
+        "name": "get_account",
+        "status": "succeeded",
+        "elapsed_ms": 21,
+        "has_output": true,
+        "error": null
+      },
+      {
+        "name": "list_account_transactions",
+        "status": "succeeded",
+        "elapsed_ms": 2,
+        "has_output": true,
+        "error": null
+      },
+      {
+        "name": "get_transaction_detail",
+        "status": "succeeded",
+        "elapsed_ms": 1,
+        "has_output": true,
+        "error": null
+      }
+    ],
+    "trace_tool_call_count": 3
+  },
+  "reconciliation_ticket": {
+    "id": "ticket_c225f3c99fb2",
+    "status": "completed",
+    "type": "reconciliation_anomaly",
+    "tool_calls": [
+      {
+        "name": "list_account_transactions",
+        "status": "succeeded",
+        "elapsed_ms": 20,
+        "has_output": true,
+        "error": null
+      },
+      {
+        "name": "check_account_reconciliation",
+        "status": "succeeded",
+        "elapsed_ms": 2,
+        "has_output": true,
+        "error": null
+      }
+    ],
+    "trace_tool_call_count": 2
+  },
+  "result": "passed"
+}

@@ -1,0 +1,33 @@
+test_continue_completed_ticket_returns_409 (test_continue.TicketContinueTest.test_continue_completed_ticket_returns_409) ... ok
+test_continue_missing_balance_ticket_updates_same_ticket (test_continue.TicketContinueTest.test_continue_missing_balance_ticket_updates_same_ticket) ... ok
+test_continue_missing_ticket_returns_404 (test_continue.TicketContinueTest.test_continue_missing_ticket_returns_404) ... ok
+test_continue_rejects_non_object_metadata_patch (test_continue.TicketContinueTest.test_continue_rejects_non_object_metadata_patch) ... ok
+test_continue_case_is_evaluated (test_evaluation.EvaluationRunnerTest.test_continue_case_is_evaluated) ... ok
+test_failure_type_distribution_contains_expected_boundaries (test_evaluation.EvaluationRunnerTest.test_failure_type_distribution_contains_expected_boundaries) ... ok
+test_loads_fixed_eval_cases (test_evaluation.EvaluationRunnerTest.test_loads_fixed_eval_cases) ... ok
+test_run_evaluation_calculates_required_metrics (test_evaluation.EvaluationRunnerTest.test_run_evaluation_calculates_required_metrics) ... ok
+test_script_entrypoint_exists (test_evaluation.EvaluationRunnerTest.test_script_entrypoint_exists) ... ok
+test_markdown_ingestion_splits_heading_chunks (test_rag.RagTest.test_markdown_ingestion_splits_heading_chunks) ... ok
+test_no_evidence_does_not_fabricate_answer (test_rag.RagTest.test_no_evidence_does_not_fabricate_answer) ... ok
+test_reconciliation_ticket_returns_sop_evidence (test_rag.RagTest.test_reconciliation_ticket_returns_sop_evidence) ... ok
+test_reimbursement_query_hits_policy_or_approval_rules (test_rag.RagTest.test_reimbursement_query_hits_policy_or_approval_rules) ... ok
+test_reimbursement_without_evidence_escalates (test_rag.RagTest.test_reimbursement_without_evidence_escalates) ... ok
+test_trace_contains_rag_retrieval_event (test_rag.RagTest.test_trace_contains_rag_retrieval_event) ... ok
+test_registry_exposes_four_mcp_style_tools (test_tools.ToolRegistryTest.test_registry_exposes_four_mcp_style_tools) ... ok
+test_tool_error_mapping_returns_failed_result (test_tools.ToolRegistryTest.test_tool_error_mapping_returns_failed_result) ... ok
+test_tool_success_result_contains_output_and_elapsed (test_tools.ToolRegistryTest.test_tool_success_result_contains_output_and_elapsed) ... ok
+test_balance_ticket_asks_for_missing_parameters (test_workflow.LangGraphWorkflowTest.test_balance_ticket_asks_for_missing_parameters) ... ok
+test_balance_ticket_calls_tools_when_fields_exist (test_workflow.LangGraphWorkflowTest.test_balance_ticket_calls_tools_when_fields_exist) ... ok
+test_reconciliation_classification_wins_when_text_mentions_balance (test_workflow.LangGraphWorkflowTest.test_reconciliation_classification_wins_when_text_mentions_balance) ... ok
+test_reconciliation_completes_when_internal_and_expected_balances_match (test_workflow.LangGraphWorkflowTest.test_reconciliation_completes_when_internal_and_expected_balances_match) ... ok
+test_reconciliation_escalates_when_expected_balance_differs_from_current_balance (test_workflow.LangGraphWorkflowTest.test_reconciliation_escalates_when_expected_balance_differs_from_current_balance) ... ok
+test_reconciliation_escalates_when_expected_balance_is_not_numeric (test_workflow.LangGraphWorkflowTest.test_reconciliation_escalates_when_expected_balance_is_not_numeric) ... ok
+test_reconciliation_escalates_when_go_internal_reconciliation_mismatches (test_workflow.LangGraphWorkflowTest.test_reconciliation_escalates_when_go_internal_reconciliation_mismatches) ... ok
+test_reimbursement_ticket_completes_with_evidence (test_workflow.LangGraphWorkflowTest.test_reimbursement_ticket_completes_with_evidence) ... ok
+test_tool_failure_triggers_human_escalation (test_workflow.LangGraphWorkflowTest.test_tool_failure_triggers_human_escalation) ... ok
+test_unsupported_ticket_triggers_human_escalation (test_workflow.LangGraphWorkflowTest.test_unsupported_ticket_triggers_human_escalation) ... ok
+
+----------------------------------------------------------------------
+Ran 28 tests in 0.788s
+
+OK

@@ -1,0 +1,243 @@
+{
+  "mode": "uvicorn subprocess",
+  "port": 8018,
+  "go_api_base_url": "http://127.0.0.1:8080",
+  "go_health": {
+    "status": "ok"
+  },
+  "fixture": {
+    "from_account_id": "4f21fb8a-a81f-448e-9005-a119d6b5b972",
+    "transfer_id": "fc92a674-6454-4ff1-9889-3782edf4e259",
+    "current_balance": 1500
+  },
+  "health": {
+    "status": "ok"
+  },
+  "tools": [
+    "get_account",
+    "list_account_transactions",
+    "get_transaction_detail",
+    "check_account_reconciliation"
+  ],
+  "reimbursement_rag": {
+    "id": "ticket_86068fddcb66",
+    "status": "completed",
+    "type": "reimbursement_policy",
+    "needs_human": false,
+    "escalation_reason": null,
+    "tool_calls": [],
+    "evidence": [
+      {
+        "source": "approval-rules.md",
+        "heading": "缺失材料",
+        "score": 0.4328,
+        "chunk_id": "approval-rules.md#3"
+      },
+      {
+        "source": "reimbursement-policy.md",
+        "heading": "住宿费用",
+        "score": 0.3785,
+        "chunk_id": "reimbursement-policy.md#4"
+      },
+      {
+        "source": "reimbursement-policy.md",
+        "heading": "交通费用",
+        "score": 0.3758,
+        "chunk_id": "reimbursement-policy.md#3"
+      }
+    ],
+    "trace_events": [
+      "workflow_node",
+      "classification",
+      "missing_parameters",
+      "task_decomposition",
+      "rag_retrieval",
+      "structured_output",
+      "human_escalation",
+      "ticket_finalized"
+    ]
+  },
+  "balance_tool_calling": {
+    "id": "ticket_05e2d6ab9555",
+    "status": "completed",
+    "type": "balance_anomaly",
+    "needs_human": false,
+    "escalation_reason": null,
+    "tool_calls": [
+      {
+        "name": "get_account",
+        "status": "succeeded",
+        "elapsed_ms": 35,
+        "error": null
+      },
+      {
+        "name": "list_account_transactions",
+        "status": "succeeded",
+        "elapsed_ms": 2,
+        "error": null
+      },
+      {
+        "name": "get_transaction_detail",
+        "status": "succeeded",
+        "elapsed_ms": 1,
+        "error": null
+      }
+    ],
+    "evidence": [
+      {
+        "source": "reconciliation-sop.md",
+        "heading": "常见异常",
+        "score": 0.4491,
+        "chunk_id": "reconciliation-sop.md#3"
+      }
+    ],
+    "trace_events": [
+      "workflow_node",
+      "classification",
+      "missing_parameters",
+      "task_decomposition",
+      "rag_retrieval",
+      "tool_call",
+      "tool_call",
+      "tool_call",
+      "structured_output",
+      "human_escalation",
+      "ticket_finalized"
+    ]
+  },
+  "reconciliation_expected_balance_mismatch": {
+    "id": "ticket_3bc992931edc",
+    "status": "escalated",
+    "type": "reconciliation_anomaly",
+    "needs_human": true,
+    "escalation_reason": "Go internal balance and ledger are matched, but expected_balance differs from current_balance by -100; review external statement source, time range, or posting delay.",
+    "tool_calls": [
+      {
+        "name": "list_account_transactions",
+        "status": "succeeded",
+        "elapsed_ms": 17,
+        "error": null
+      },
+      {
+        "name": "check_account_reconciliation",
+        "status": "succeeded",
+        "elapsed_ms": 2,
+        "error": null
+      }
+    ],
+    "evidence": [
+      {
+        "source": "reconciliation-sop.md",
+        "heading": "升级条件",
+        "score": 0.7773,
+        "chunk_id": "reconciliation-sop.md#4"
+      },
+      {
+        "source": "reconciliation-sop.md",
+        "heading": "基本步骤",
+        "score": 0.635,
+        "chunk_id": "reconciliation-sop.md#2"
+      },
+      {
+        "source": "reconciliation-sop.md",
+        "heading": "常见异常",
+        "score": 0.4632,
+        "chunk_id": "reconciliation-sop.md#3"
+      }
+    ],
+    "trace_events": [
+      "workflow_node",
+      "classification",
+      "missing_parameters",
+      "task_decomposition",
+      "rag_retrieval",
+      "tool_call",
+      "tool_call",
+      "structured_output",
+      "human_escalation",
+      "ticket_finalized"
+    ]
+  },
+  "missing_then_continue": {
+    "initial": {
+      "id": "ticket_0ab169cc99cf",
+      "status": "needs_more_info",
+      "type": "balance_anomaly",
+      "needs_human": false,
+      "escalation_reason": null,
+      "tool_calls": [],
+      "evidence": [],
+      "trace_events": [
+        "workflow_node",
+        "classification",
+        "missing_parameters",
+        "structured_output",
+        "human_escalation",
+        "ticket_finalized"
+      ]
+    },
+    "continued": {
+      "id": "ticket_0ab169cc99cf",
+      "status": "completed",
+      "type": "balance_anomaly",
+      "needs_human": false,
+      "escalation_reason": null,
+      "tool_calls": [
+        {
+          "name": "get_account",
+          "status": "succeeded",
+          "elapsed_ms": 2,
+          "error": null
+        },
+        {
+          "name": "list_account_transactions",
+          "status": "succeeded",
+          "elapsed_ms": 1,
+          "error": null
+        },
+        {
+          "name": "get_transaction_detail",
+          "status": "succeeded",
+          "elapsed_ms": 21,
+          "error": null
+        }
+      ],
+      "evidence": [
+        {
+          "source": "reconciliation-sop.md",
+          "heading": "常见异常",
+          "score": 0.4448,
+          "chunk_id": "reconciliation-sop.md#3"
+        }
+      ],
+      "trace_events": [
+        "workflow_node",
+        "classification",
+        "missing_parameters",
+        "structured_output",
+        "human_escalation",
+        "ticket_finalized",
+        "continue_ticket",
+        "metadata_patch_applied",
+        "dialogue_context_updated",
+        "workflow_node",
+        "classification",
+        "missing_parameters",
+        "task_decomposition",
+        "rag_retrieval",
+        "tool_call",
+        "tool_call",
+        "tool_call",
+        "structured_output",
+        "human_escalation",
+        "ticket_finalized"
+      ]
+    },
+    "same_ticket_id": true,
+    "trace_contains_missing_parameters": true,
+    "trace_contains_continue_ticket": true,
+    "trace_contains_metadata_patch_applied": true,
+    "trace_contains_dialogue_context_updated": true
+  },
+  "result": "passed"
+}

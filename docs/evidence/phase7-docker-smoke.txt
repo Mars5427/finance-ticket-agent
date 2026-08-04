@@ -1,0 +1,41 @@
+[2026-08-04] Phase 7 Docker smoke summary
+
+1. Host-side compose startup was confirmed from PowerShell on Tuesday, August 4, 2026:
+   - `docker pull python:3.11-slim` succeeded
+   - `docker pull node:20-alpine` succeeded
+   - `docker pull nginx:1.27-alpine` succeeded
+   - `docker compose build` succeeded
+   - `docker compose up -d` succeeded
+   - `curl.exe -s http://127.0.0.1:8000/healthz` returned `{"status":"ok"}`
+   - `curl.exe -I http://127.0.0.1:5173` returned `HTTP/1.1 200 OK`
+   - `docker compose down` succeeded
+
+2. Earlier false negative on host-side `POST /api/tickets`:
+   - The earlier `unsupported` result was not caused by an old container image.
+   - Root cause: PowerShell + `curl.exe` piping caused the Chinese request body to become `????`, so the deterministic classifier could not match Chinese keywords.
+
+3. Final host-side ticket creation smoke after fixing request encoding:
+   - Request body was sent with JSON Unicode escapes.
+   - `POST http://127.0.0.1:8000/api/tickets` returned:
+     - `type=reimbursement_policy`
+     - `status=completed`
+   - Returned trace included:
+     - `initialize_context`
+     - `classify`
+     - `check_missing_fields`
+     - `plan`
+     - `retrieve_evidence`
+     - `rag_retrieval`
+     - `summarize`
+     - `llm_summarize`
+     - `escalation_check`
+     - `finalize`
+
+4. Final conclusion:
+   - Docker image build is confirmed.
+   - Compose startup is confirmed.
+   - Host-side API health check is confirmed.
+   - Host-side frontend access is confirmed.
+   - Host-side ticket creation through the published API port is confirmed.
+   - Docker shutdown is confirmed.
+   - OpenSpec task `7.6` is complete.

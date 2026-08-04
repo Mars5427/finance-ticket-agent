@@ -1,0 +1,14 @@
+DeepSeek real smoke passed.
+
+provider: deepseek
+model: deepseek-v4-flash
+ticket_id: ticket_80def2b30a59
+ticket_status: escalated
+llm_call_found: true
+summary_length: 342
+confidence: low
+elapsed_ms: 3373
+api_key_leaked: false
+authorization_header_leaked: false
+full_prompt_saved: false
+trace_events: ['workflow_node', 'classification', 'missing_parameters', 'structured_output', 'llm_call', 'human_escalation', 'ticket_finalized']

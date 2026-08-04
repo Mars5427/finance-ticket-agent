@@ -1,0 +1,14 @@
+.git
+.gitignore
+.DS_Store
+node_modules
+frontend/node_modules
+frontend/dist
+agent-api/.venv
+agent-api/__pycache__
+agent-api/.pytest_cache
+agent-api/tests/__pycache__
+**/__pycache__
+**/*.pyc
+**/*.pyo
+docs/evidence

@@ -1,0 +1,9 @@
+test_balance_ticket_asks_for_missing_parameters (test_workflow.DeterministicWorkflowTest.test_balance_ticket_asks_for_missing_parameters) ... ok
+test_balance_ticket_plans_tools_when_fields_exist (test_workflow.DeterministicWorkflowTest.test_balance_ticket_plans_tools_when_fields_exist) ... ok
+test_reconciliation_escalates_without_real_tool (test_workflow.DeterministicWorkflowTest.test_reconciliation_escalates_without_real_tool) ... ok
+test_reimbursement_ticket_completes_with_evidence (test_workflow.DeterministicWorkflowTest.test_reimbursement_ticket_completes_with_evidence) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.000s
+
+OK

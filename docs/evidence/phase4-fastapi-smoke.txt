@@ -1,0 +1,218 @@
+{
+  "mode": "uvicorn subprocess",
+  "port": 8012,
+  "go_api_base_url": "http://127.0.0.1:8080",
+  "go_health": {
+    "status": "ok"
+  },
+  "fixture": {
+    "from_account_id": "6a1d4172-d5b9-4dce-9dbc-2f5f57a580f6",
+    "transfer_id": "1d21dfd2-ca4e-4d9f-887f-5ad8a9114633",
+    "current_balance": 1500
+  },
+  "health": {
+    "status": "ok"
+  },
+  "tools": [
+    "get_account",
+    "list_account_transactions",
+    "get_transaction_detail",
+    "check_account_reconciliation"
+  ],
+  "reimbursement_ticket": {
+    "id": "ticket_dac54c9d1621",
+    "status": "completed",
+    "type": "reimbursement_policy",
+    "needs_human": false,
+    "evidence": [
+      {
+        "source": "approval-rules.md",
+        "heading": "缺失材料",
+        "score": 0.4465,
+        "chunk_id": "approval-rules.md#3"
+      },
+      {
+        "source": "reimbursement-policy.md",
+        "heading": "住宿费用",
+        "score": 0.3876,
+        "chunk_id": "reimbursement-policy.md#4"
+      },
+      {
+        "source": "reimbursement-policy.md",
+        "heading": "交通费用",
+        "score": 0.3849,
+        "chunk_id": "reimbursement-policy.md#3"
+      }
+    ],
+    "tool_calls": [],
+    "trace_steps": [
+      "initialize_context",
+      "classify",
+      "check_missing_fields",
+      "plan",
+      "retrieve_evidence",
+      "summarize",
+      "escalation_check",
+      "finalize"
+    ],
+    "rag_event_count": 1,
+    "rag_payload": {
+      "query": "reimbursement policy travel meal reimbursement invoice approval materials 报销 发票 餐补 住宿 交通 审批 材料",
+      "matched_sources": [
+        "approval-rules.md",
+        "reimbursement-policy.md"
+      ],
+      "snippets": [
+        "缺少发票、审批单、出差记录或付款凭证时，系统应先追问缺失材料，不应直接给出通过结论。",
+        "住宿费用应匹配审批标准。超出标准的部分需要说明原因，并可能触发人工审批。",
+        "市内交通费用应与业务行程相关。缺少发票时，需要补充合理说明并进入人工审核。"
+      ],
+      "scores": [
+        0.4465,
+        0.3876,
+        0.3849
+      ],
+      "elapsed_ms": 1,
+      "no_evidence_reason": null
+    }
+  },
+  "balance_ticket": {
+    "id": "ticket_723dac157cd7",
+    "status": "completed",
+    "type": "balance_anomaly",
+    "needs_human": false,
+    "evidence": [
+      {
+        "source": "reconciliation-sop.md",
+        "heading": "常见异常",
+        "score": 0.4537,
+        "chunk_id": "reconciliation-sop.md#3"
+      }
+    ],
+    "tool_calls": [
+      {
+        "name": "get_account",
+        "status": "succeeded",
+        "elapsed_ms": 19,
+        "has_output": true,
+        "error": null
+      },
+      {
+        "name": "list_account_transactions",
+        "status": "succeeded",
+        "elapsed_ms": 2,
+        "has_output": true,
+        "error": null
+      },
+      {
+        "name": "get_transaction_detail",
+        "status": "succeeded",
+        "elapsed_ms": 14,
+        "has_output": true,
+        "error": null
+      }
+    ],
+    "trace_steps": [
+      "initialize_context",
+      "classify",
+      "check_missing_fields",
+      "plan",
+      "retrieve_evidence",
+      "execute_tools",
+      "execute_tools",
+      "execute_tools",
+      "summarize",
+      "escalation_check",
+      "finalize"
+    ],
+    "rag_event_count": 1,
+    "rag_payload": {
+      "query": "balance anomaly explanation The account balance is 500 lower than expected. 余额异常 流水 差异 时间范围 入账延迟",
+      "matched_sources": [
+        "reconciliation-sop.md"
+      ],
+      "snippets": [
+        "- 借贷方向相反 - 重复记账 - 缺失流水 - 时间范围不一致 - 币种不一致"
+      ],
+      "scores": [
+        0.4537
+      ],
+      "elapsed_ms": 0,
+      "no_evidence_reason": null
+    }
+  },
+  "reconciliation_ticket": {
+    "id": "ticket_8dc050b60b68",
+    "status": "escalated",
+    "type": "reconciliation_anomaly",
+    "needs_human": true,
+    "evidence": [
+      {
+        "source": "reconciliation-sop.md",
+        "heading": "升级条件",
+        "score": 0.7773,
+        "chunk_id": "reconciliation-sop.md#4"
+      },
+      {
+        "source": "reconciliation-sop.md",
+        "heading": "基本步骤",
+        "score": 0.635,
+        "chunk_id": "reconciliation-sop.md#2"
+      },
+      {
+        "source": "reconciliation-sop.md",
+        "heading": "常见异常",
+        "score": 0.4632,
+        "chunk_id": "reconciliation-sop.md#3"
+      }
+    ],
+    "tool_calls": [
+      {
+        "name": "list_account_transactions",
+        "status": "succeeded",
+        "elapsed_ms": 2,
+        "has_output": true,
+        "error": null
+      },
+      {
+        "name": "check_account_reconciliation",
+        "status": "succeeded",
+        "elapsed_ms": 1,
+        "has_output": true,
+        "error": null
+      }
+    ],
+    "trace_steps": [
+      "initialize_context",
+      "classify",
+      "check_missing_fields",
+      "plan",
+      "retrieve_evidence",
+      "execute_tools",
+      "execute_tools",
+      "summarize",
+      "escalation_check",
+      "finalize"
+    ],
+    "rag_event_count": 1,
+    "rag_payload": {
+      "query": "account reconciliation anomaly The external statement differs from internal records. 对账 差异 期望金额 外部对账单 时间范围 缺失流水 入账延迟 升级条件",
+      "matched_sources": [
+        "reconciliation-sop.md"
+      ],
+      "snippets": [
+        "无法从账户和流水数据定位差异、发现多处冲突或缺少外部对账单时，应升级人工处理。",
+        "1. 确认账户、币种、时间范围和期望金额。 2. 拉取账户余额和时间范围内流水。 3. 对比期初余额、期间借贷方向、期末余额和外部对账单金额。 4. 定位金额、方向、重复记账或缺失流水。",
+        "- 借贷方向相反 - 重复记账 - 缺失流水 - 时间范围不一致 - 币种不一致"
+      ],
+      "scores": [
+        0.7773,
+        0.635,
+        0.4632
+      ],
+      "elapsed_ms": 0,
+      "no_evidence_reason": null
+    }
+  },
+  "result": "passed"
+}

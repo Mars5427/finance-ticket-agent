@@ -1,0 +1,7 @@
+﻿DeepSeek smoke skipped.
+reason: LLM_API_KEY is not set in the current environment.
+provider: deepseek
+model: deepseek-v4-flash
+base_url: https://api.deepseek.com
+request_sent: false
+secrets_recorded: false

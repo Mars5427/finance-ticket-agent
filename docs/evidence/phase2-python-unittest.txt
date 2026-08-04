@@ -1,0 +1,12 @@
+test_registry_exposes_four_mcp_style_tools (test_tools.ToolRegistryTest.test_registry_exposes_four_mcp_style_tools) ... ok
+test_tool_error_mapping_returns_failed_result (test_tools.ToolRegistryTest.test_tool_error_mapping_returns_failed_result) ... ok
+test_tool_success_result_contains_output_and_elapsed (test_tools.ToolRegistryTest.test_tool_success_result_contains_output_and_elapsed) ... ok
+test_balance_ticket_asks_for_missing_parameters (test_workflow.DeterministicWorkflowTest.test_balance_ticket_asks_for_missing_parameters) ... ok
+test_balance_ticket_plans_tools_when_fields_exist (test_workflow.DeterministicWorkflowTest.test_balance_ticket_plans_tools_when_fields_exist) ... ok
+test_reconciliation_uses_go_reconciliation_tool (test_workflow.DeterministicWorkflowTest.test_reconciliation_uses_go_reconciliation_tool) ... ok
+test_reimbursement_ticket_completes_with_evidence (test_workflow.DeterministicWorkflowTest.test_reimbursement_ticket_completes_with_evidence) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.001s
+
+OK

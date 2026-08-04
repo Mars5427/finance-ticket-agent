@@ -1,7 +1,29 @@
-# Phase 0 placeholder.
-#
-# Services will be added when agent-api, frontend, and integration dependencies
-# exist. Until then, `docker compose config` is intentionally listed as a
-# future quality gate rather than a passed check.
 name: finance-ticket-agent
-services: {}
+
+services:
+  agent-api:
+    build:
+      context: .
+      dockerfile: agent-api/Dockerfile
+    environment:
+      GO_ACCOUNT_API_BASE_URL: ${GO_ACCOUNT_API_BASE_URL:-http://host.docker.internal:8080}
+      LLM_ENABLED: ${LLM_ENABLED:-false}
+      LLM_PROVIDER: ${LLM_PROVIDER:-disabled}
+      LLM_API_KEY: ${LLM_API_KEY:-}
+      LLM_MODEL: ${LLM_MODEL:-}
+      LLM_BASE_URL: ${LLM_BASE_URL:-}
+      LLM_TIMEOUT_SECONDS: ${LLM_TIMEOUT_SECONDS:-10}
+      LLM_MAX_TOKENS: ${LLM_MAX_TOKENS:-800}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "8000:8000"
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    depends_on:
+      - agent-api
+    ports:
+      - "5173:80"

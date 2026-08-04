@@ -1,0 +1,80 @@
+{
+  "mode": "uvicorn subprocess",
+  "port": 8016,
+  "go_api_base_url": "http://127.0.0.1:8080",
+  "go_health": {
+    "status": "ok"
+  },
+  "fixture": {
+    "from_account_id": "47871c68-b21a-49f9-9f85-404de45f54cf",
+    "transfer_id": "70681363-0eb1-4b21-8ea8-1ad8afbd44d5",
+    "current_balance": 1500
+  },
+  "health": {
+    "status": "ok"
+  },
+  "initial_ticket": {
+    "id": "ticket_3c68c32ac4b5",
+    "status": "needs_more_info",
+    "type": "balance_anomaly",
+    "follow_up_question": "为了解释余额异常，请补充：账户 ID、你看到的余额。",
+    "tool_call_count": 0,
+    "trace_event_types": [
+      "workflow_node",
+      "classification",
+      "missing_parameters",
+      "structured_output",
+      "human_escalation",
+      "ticket_finalized"
+    ]
+  },
+  "continued_ticket": {
+    "id": "ticket_3c68c32ac4b5",
+    "same_ticket_id": true,
+    "status": "completed",
+    "type": "balance_anomaly",
+    "metadata": {
+      "account_id": "47871c68-b21a-49f9-9f85-404de45f54cf",
+      "observed_balance": 1500
+    },
+    "tool_calls": [
+      {
+        "name": "get_account",
+        "status": "succeeded",
+        "elapsed_ms": 20,
+        "error": null
+      },
+      {
+        "name": "list_account_transactions",
+        "status": "succeeded",
+        "elapsed_ms": 2,
+        "error": null
+      },
+      {
+        "name": "get_transaction_detail",
+        "status": "succeeded",
+        "elapsed_ms": 1,
+        "error": null
+      }
+    ],
+    "tool_call_count": 3,
+    "evidence_count": 1,
+    "dialogue_context": [
+      {
+        "role": "user",
+        "content": "Balance anomaly missing parameters\nThe account balance does not match what I saw; please explain the balance anomaly.",
+        "kind": "initial_ticket"
+      },
+      {
+        "role": "user",
+        "content": "The account is 47871c68-b21a-49f9-9f85-404de45f54cf, and the observed balance is 1500.",
+        "kind": "metadata_follow_up"
+      }
+    ],
+    "trace_contains_missing_parameters": true,
+    "trace_contains_continue_ticket": true,
+    "trace_contains_metadata_patch_applied": true,
+    "trace_contains_dialogue_context_updated": true
+  },
+  "result": "passed"
+}

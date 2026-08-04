@@ -1,0 +1,4 @@
+INFO:     127.0.0.1:60898 - "GET /healthz HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60902 - "POST /api/tickets HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60903 - "POST /api/tickets/ticket_3c68c32ac4b5/continue HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60907 - "GET /api/tickets/ticket_3c68c32ac4b5/trace HTTP/1.1" 200 OK

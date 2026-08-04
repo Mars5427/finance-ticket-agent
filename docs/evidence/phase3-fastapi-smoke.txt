@@ -1,0 +1,101 @@
+{
+  "mode": "uvicorn subprocess",
+  "port": 8011,
+  "go_api_base_url": "http://127.0.0.1:8080",
+  "go_health": {
+    "status": "ok"
+  },
+  "fixture": {
+    "from_account_id": "cb363364-32c4-4814-8b08-e25e8e26d9fd",
+    "transfer_id": "64b7aada-3fe9-42ed-89af-c528f9051552",
+    "current_balance": 1500
+  },
+  "health": {
+    "status": "ok"
+  },
+  "tools": [
+    "get_account",
+    "list_account_transactions",
+    "get_transaction_detail",
+    "check_account_reconciliation"
+  ],
+  "balance_ticket": {
+    "id": "ticket_47a279cba79f",
+    "status": "completed",
+    "type": "balance_anomaly",
+    "needs_human": false,
+    "escalation_reason": null,
+    "tool_calls": [
+      {
+        "name": "get_account",
+        "status": "succeeded",
+        "elapsed_ms": 36,
+        "has_output": true,
+        "error": null
+      },
+      {
+        "name": "list_account_transactions",
+        "status": "succeeded",
+        "elapsed_ms": 2,
+        "has_output": true,
+        "error": null
+      },
+      {
+        "name": "get_transaction_detail",
+        "status": "succeeded",
+        "elapsed_ms": 1,
+        "has_output": true,
+        "error": null
+      }
+    ],
+    "trace_steps": [
+      "initialize_context",
+      "classify",
+      "check_missing_fields",
+      "plan",
+      "execute_tools",
+      "execute_tools",
+      "execute_tools",
+      "summarize",
+      "escalation_check",
+      "finalize"
+    ],
+    "trace_tool_call_count": 3
+  },
+  "reconciliation_ticket": {
+    "id": "ticket_2db2ca70d7a9",
+    "status": "escalated",
+    "type": "reconciliation_anomaly",
+    "needs_human": true,
+    "escalation_reason": "Go internal balance and ledger are matched, but expected_balance differs from current_balance by -100; review external statement source, time range, or posting delay.",
+    "tool_calls": [
+      {
+        "name": "list_account_transactions",
+        "status": "succeeded",
+        "elapsed_ms": 19,
+        "has_output": true,
+        "error": null
+      },
+      {
+        "name": "check_account_reconciliation",
+        "status": "succeeded",
+        "elapsed_ms": 2,
+        "has_output": true,
+        "error": null
+      }
+    ],
+    "trace_steps": [
+      "initialize_context",
+      "classify",
+      "check_missing_fields",
+      "plan",
+      "execute_tools",
+      "execute_tools",
+      "summarize",
+      "escalation_check",
+      "finalize"
+    ],
+    "trace_tool_call_count": 2
+  },
+  "result": "passed"
+}

@@ -1,0 +1,40 @@
+GET /healthz
+{"status":"ok"}
+POST /api/tickets
+{
+  "id": "ticket_ea7de198a622",
+  "type": "balance_anomaly",
+  "status": "completed",
+  "tool_calls": [
+    {
+      "name": "get_account",
+      "status": "planned",
+      "input": {
+        "account_id": "demo-account"
+      }
+    },
+    {
+      "name": "list_account_transactions",
+      "status": "planned",
+      "input": {
+        "account_id": "demo-account",
+        "limit": 50
+      }
+    }
+  ],
+  "trace_count": 3
+}
+GET /api/tickets
+{
+  "count": 1,
+  "first_id": "ticket_ea7de198a622"
+}
+GET /api/tickets/{id}/trace
+{
+  "count": 3,
+  "events": [
+    "classification",
+    "task_decomposition",
+    "structured_output"
+  ]
+}

@@ -1,0 +1,38 @@
+﻿{
+    "health":  {
+                   "status":  "ok"
+               },
+    "created":  {
+                    "from_user_id":  "e9008372-de1f-4626-b3be-608d859a1505",
+                    "to_user_id":  "63bf3d8b-f2b0-4eb8-aa09-8401c8ac1ed1",
+                    "from_account_id":  "b1519cd2-4163-4ce2-b566-7d83548fd57b",
+                    "to_account_id":  "53c9aeb7-6809-4c8f-ba53-f8491d5280b9",
+                    "transfer_id":  "8d02f76b-f9a8-46e5-890d-dee70c6d466a"
+                },
+    "agent_tool_endpoints":  {
+                                 "get_account":  {
+                                                     "path":  "/v1/accounts/b1519cd2-4163-4ce2-b566-7d83548fd57b",
+                                                     "id":  "b1519cd2-4163-4ce2-b566-7d83548fd57b",
+                                                     "balance":  1500
+                                                 },
+                                 "list_account_transactions":  {
+                                                                   "path":  "/v1/accounts/b1519cd2-4163-4ce2-b566-7d83548fd57b/transactions?limit=50",
+                                                                   "count":  1,
+                                                                   "first_transfer_id":  "8d02f76b-f9a8-46e5-890d-dee70c6d466a"
+                                                               },
+                                 "get_transaction_detail":  {
+                                                                "path":  "/v1/transfers/8d02f76b-f9a8-46e5-890d-dee70c6d466a",
+                                                                "id":  "8d02f76b-f9a8-46e5-890d-dee70c6d466a",
+                                                                "amount":  500,
+                                                                "status":  "succeeded"
+                                                            },
+                                 "check_account_reconciliation":  {
+                                                                      "path":  "/v1/accounts/b1519cd2-4163-4ce2-b566-7d83548fd57b/reconciliation",
+                                                                      "matched":  true,
+                                                                      "issues":  [
+
+                                                                                 ]
+                                                                  }
+                             },
+    "result":  "passed"
+}

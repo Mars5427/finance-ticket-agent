@@ -120,7 +120,7 @@ function App() {
       <header className="topbar">
         <div>
           <h1>面向财务场景的智能工单处理 Agent</h1>
-          <p>Phase 6.5: optional LLM summary, deterministic fallback by default</p>
+          <p>Deterministic workflow by default, optional LLM summary when configured</p>
         </div>
         <StatusLegend />
       </header>
